@@ -2,84 +2,83 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    transition: background-color 0.5s; /* Add transition effect for dark/light mode */
 }
 
-header {
+/* Light Mode Styles */
+
+body.light-mode {
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+header.light-mode {
     background-color: #333;
     color: #fff;
-    padding: 1em;
-    text-align: center;
 }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
+nav ul.light-mode {
+    background-color: #fff;
 }
 
-nav li {
-    margin-right: 20px;
+nav a.light-mode {
+    color: #333;
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
+main.light-mode {
+    background-color: #fff;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2em;
-}
-
-section {
+section.light-mode {
     background-color: #f7f7f7;
-    padding: 2em;
-    margin-bottom: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+h1, h2.light-mode {
     color: #333;
-    margin-top: 0;
 }
 
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 10px;
-}
-
-i {
-    margin-right: 10px;
-}
-
-button {
+button.light-mode {
     background-color: #333;
     color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
 }
 
-button:hover {
+/* Dark Mode Styles */
+
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+header.dark-mode {
     background-color: #444;
+    color: #fff;
 }
 
-footer {
+nav ul.dark-mode {
     background-color: #333;
+}
+
+nav a.dark-mode {
     color: #fff;
-    padding: 1em;
-    text-align: center;
-    clear: both;
+}
+
+main.dark-mode {
+    background-color: #333;
+}
+
+section.dark-mode {
+    background-color: #444;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2.dark-mode {
+    color: #fff;
+}
+
+button.dark-mode {
+    background-color: #444;
+    color: #fff;
 }
 
 /* Mobile Styles */
