@@ -1,5 +1,8 @@
-// Add event listener to join button
-document.querySelector('button').addEventListener('click', function() {
-    // Open Minecraft client with FlyMC server details
-    window.open('minecraft://flymc.slicehosting.com:25565', '_blank');
+// Add event listener to theme toggle button
+document.getElementById('theme-toggle').addEventListener('click', function() {
+    // Toggle dark/light mode
+    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('light-mode');
 });
+
+// Set initial theme based on
