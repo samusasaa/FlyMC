@@ -26,16 +26,6 @@ header {
     position: relative;
 }
 
-.logo-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.logo {
-    height: 40px;
-}
-
 nav ul {
     list-style: none;
     display: flex;
@@ -46,6 +36,19 @@ nav a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 100%;
+    max-width: 3500px;
+    height: auto;
 }
 
 main {
