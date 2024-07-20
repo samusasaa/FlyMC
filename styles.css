@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+h1, p {
+    opacity: 0; /* Start hidden */
+    transform: translateX(-100%); /* Start off-screen to the left */
+    transition: all 1s ease; /* Smooth transition */
+}
+
+.show {
+    opacity: 1; /* Fully visible */
+    transform: translateX(0); /* Move to original position */
+}
