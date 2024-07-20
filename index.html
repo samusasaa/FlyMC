@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlyMC: A New Horizon for Minecraft Servers</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magic.css@1.1.0/1.1.0/magic.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magic.css@1.4.8/dist/magic.css">
     <style>
         body {
             display: flex;
@@ -19,21 +19,26 @@
         .container {
             text-align: center;
         }
-        h1 {
-            font-size: 2.5rem;
-            color: #333;
-        }
-        p {
-            font-size: 1.25rem;
-            color: #666;
+        h1, p {
+            visibility: hidden; /* Start hidden */
         }
     </style>
 </head>
 <body>
-    <div class="container magic-slideInLeft">
-        <h1 class="magic-slideInLeft">FlyMC: A New Horizon for Minecraft Servers</h1>
-        <p class="magic-slideInLeft">Welcome to FlyMC, where the Minecraft experience is redefined with elegance and tranquility. Join us in a journey beyond the ordinary, into a realm where creativity and community flourish together.</p>
-        <p class="magic-slideInLeft">Our server is currently under construction. Stay tuned for an amazing adventure coming soon!</p>
+    <div class="container">
+        <h1 class="magic">FlyMC: A New Horizon for Minecraft Servers</h1>
+        <p class="magic">Welcome to FlyMC, where the Minecraft experience is redefined with elegance and tranquility. Join us in a journey beyond the ordinary, into a realm where creativity and community flourish together.</p>
+        <p class="magic">Our server is currently under construction. Stay tuned for an amazing adventure coming soon!</p>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const elements = document.querySelectorAll('.magic');
+            elements.forEach(element => {
+                element.style.visibility = 'visible';
+                element.classList.add('magictime', 'slideLeft'); // Use the appropriate animation class
+            });
+        });
+    </script>
 </body>
 </html>
