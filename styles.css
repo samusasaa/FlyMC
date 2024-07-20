@@ -23,11 +23,17 @@ header {
     padding: 20px;
     background: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .logo {
-    font-size: 1.5em;
-    font-weight: bold;
+    height: 40px;
 }
 
 nav ul {
@@ -84,18 +90,12 @@ p {
 footer {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 20px;
     background: white;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.trustpilot {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+.copyright {
     font-weight: bold;
-}
-
-.trustpilot span:first-child {
-    color: #ffd700;
 }
