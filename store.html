@@ -190,7 +190,7 @@
     </header>
     <main>
         <div class="logo-container">
-            <img src="path-to-your-logo.png" alt="FlyMC Logo" class="logo">
+            <img src="logo.png" alt="FlyMC Logo" class="logo">
         </div>
         <h1>Welcome to FlyMC</h1>
         <p>A New Horizon for Minecraft Servers</p>
@@ -207,27 +207,27 @@
 
     <div class="store-items">
         <div class="store-item">
-            <img src="iron.png" alt="Iron Logo">
+            <img src="assets/iron.webp" alt="Iron Logo">
             <h3>Iron - $0.99</h3>
             <button onclick="addToCart('Iron', 0.99)">Add to Cart</button>
         </div>
         <div class="store-item">
-            <img src="gold.png" alt="Gold Logo">
+            <img src="assets/gold.webp" alt="Gold Logo">
             <h3>Gold - $1.24</h3>
             <button onclick="addToCart('Gold', 1.24)">Add to Cart</button>
         </div>
         <div class="store-item">
-            <img src="diamond.png" alt="Diamond Logo">
+            <img src="assets/diamond.webp" alt="Diamond Logo">
             <h3>Diamond - $1.55</h3>
             <button onclick="addToCart('Diamond', 1.55)">Add to Cart</button>
         </div>
         <div class="store-item">
-            <img src="emerald.png" alt="Emerald Logo">
+            <img src="assets/emerald.webp" alt="Emerald Logo">
             <h3>Emerald - $1.94</h3>
             <button onclick="addToCart('Emerald', 1.94)">Add to Cart</button>
         </div>
         <div class="store-item">
-            <img src="netherite.png" alt="Netherite Logo">
+            <img src="assets/netherite.webp" alt="Netherite Logo">
             <h3>Netherite - $2.42</h3>
             <button onclick="addToCart('Netherite', 2.42)">Add to Cart</button>
         </div>
@@ -279,27 +279,4 @@
                 cartItemDiv.className = 'cart-item';
                 cartItemDiv.innerHTML = `
                     ${cartItem.item} - $${cartItem.price.toFixed(2)}
-                    <button onclick="removeFromCart(${index})">Remove</button>
-                `;
-                cartItemsDiv.appendChild(cartItemDiv);
-            });
-
-            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
-        }
-
-        function generateInvoice() {
-            const invoiceNumber = 'INV' + Math.floor(Math.random() * 1000000);
-            const invoiceWindow = window.open('', 'Invoice', 'width=600,height=400');
-            invoiceWindow.document.write('<h1>Invoice</h1>');
-            cart.forEach(cartItem => {
-                invoiceWindow.document.write(`<p>${cartItem.item} - $${cartItem.price.toFixed(2)}</p>`);
-            });
-            invoiceWindow.document.write(`<h2>Total: $${totalPrice.toFixed(2)}</h2>`);
-            invoiceWindow.document.write(`<p>Invoice Number: ${invoiceNumber}</p>`);
-            invoiceWindow.document.write(`<p>To complete your purchase, please click "Continue with Discord" and follow the instructions. Take a screenshot of this invoice.</p>`);
-            invoiceWindow.document.write('<button onclick="window.close()">Close</button>');
-            invoiceWindow.document.write('<button onclick="window.location.href=\'https://discord.com\';">Continue with Discord</button>');
-        }
-    </script>
-</body>
-</html>
+                    <button onclick="remove
