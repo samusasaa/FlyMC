@@ -9,10 +9,16 @@ function addToCart(item, price) {
 function updateCart() {
     let cartItems = document.getElementById("cart-items");
     let cartTotal = document.getElementById("cart-total");
+
     if (!cartItems || !cartTotal) return;
 
-    cartItems.innerHTML = cart.map((cartItem, index) => `<p>${cartItem.item} - $${cartItem.price.toFixed(2)} <button onclick="removeFromCart(${index})">Remove</button></p>`).join("");
-    cartTotal.innerHTML = `<h2>Total: $${cart.reduce((total, cartItem) => total + cartItem.price, 0).toFixed(2)}</h2>`;
+    cartItems.innerHTML = cart.map((cartItem, index) => `
+        <p>${cartItem.item} - $${cartItem.price.toFixed(2)} 
+        <button onclick="removeFromCart(${index})">Remove</button></p>
+    `).join("");
+
+    let total = cart.reduce((sum, cartItem) => sum + cartItem.price, 0);
+    cartTotal.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
 }
 
 function removeFromCart(index) {
@@ -21,23 +27,18 @@ function removeFromCart(index) {
 }
 
 function generateInvoice() {
-    let invoice = document.getElementById("invoice");
-    if (!invoice) return;
-
+    let invoiceWindow = window.open("", "Invoice", "width=600,height=400");
     let invoiceContent = `
         <h2>Invoice</h2>
         ${cart.map(cartItem => `<p>${cartItem.item} - $${cartItem.price.toFixed(2)}</p>`).join("")}
-        <h3>Total: $${cart.reduce((total, cartItem) => total + cartItem.price, 0).toFixed(2)}</h3>
+        <h3>Total: $${cart.reduce((sum, cartItem) => sum + cartItem.price, 0).toFixed(2)}</h3>
+        <p>To complete your purchase, please click "Continue with Discord" and follow the instructions.</p>
+        <button onclick="window.close()">Close</button>
     `;
-
-    invoice.innerHTML = invoiceContent;
+    invoiceWindow.document.write(invoiceContent);
+    invoiceWindow.document.close();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    if (document.getElementById("cart-items")) {
-        updateCart();
-    }
-    if (document.getElementById("invoice")) {
-        generateInvoice();
-    }
+    updateCart();
 });
