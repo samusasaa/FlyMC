@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyMC Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="grid-background"></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="whats-new.html">What's new</a></li>
+                <li><a href="learn-more.html">Learn More</a></li>
+                <li><a href="store.html">Store</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>FlyMC Store</h1>
+        <h2>Ranks</h2>
+        <ul>
+            <li>Iron - $0.99 <button onclick="addToCart('Iron', 0.99)">Add to Cart</button></li>
+            <li>Gold - $1.24 <button onclick="addToCart('Gold', 1.24)">Add to Cart</button></li>
+            <li>Diamond - $1.55 <button onclick="addToCart('Diamond', 1.55)">Add to Cart</button></li>
+            <li>Emerald - $1.94 <button onclick="addToCart('Emerald', 1.94)">Add to Cart</button></li>
+            <li>Netherite - $2.42 <button onclick="addToCart('Netherite', 2.42)">Add to Cart</button></li>
+        </ul>
+        <h2>Statuses</h2>
+        <ul>
+            <li>VIP - $1.99 <button onclick="addToCart('VIP', 1.99)">Add to Cart</button></li>
+            <li>VIP+ - $2.99 <button onclick="addToCart('VIP+', 2.99)">Add to Cart</button></li>
+            <li>VIP++ - $4.49 <button onclick="addToCart('VIP++', 4.49)">Add to Cart</button></li>
+        </ul>
+        <a href="cart.html" class="btn">View Cart</a>
+    </main>
+    <footer>
+        <div class="copyright">
+            &copy; 2024 FlyMC
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
