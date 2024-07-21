@@ -190,7 +190,7 @@
     </header>
     <main>
         <div class="logo-container">
-            <img src="logo.png" alt="FlyMC Logo" class="logo">
+            <img src="cover.png" alt="FlyMC Logo" class="logo">
         </div>
         <h1>Welcome to FlyMC</h1>
         <p>A New Horizon for Minecraft Servers</p>
@@ -279,4 +279,27 @@
                 cartItemDiv.className = 'cart-item';
                 cartItemDiv.innerHTML = `
                     ${cartItem.item} - $${cartItem.price.toFixed(2)}
-                    <button onclick="remove
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsDiv.appendChild(cartItemDiv);
+            });
+
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+
+        function generateInvoice() {
+            const invoiceNumber = 'INV' + Math.floor(Math.random() * 1000000);
+            const invoiceWindow = window.open('', 'Invoice', 'width=600,height=400');
+            invoiceWindow.document.write('<h1>Invoice</h1>');
+            cart.forEach(cartItem => {
+                invoiceWindow.document.write(`<p>${cartItem.item} - $${cartItem.price.toFixed(2)}</p>`);
+            });
+            invoiceWindow.document.write(`<h2>Total: $${totalPrice.toFixed(2)}</h2>`);
+            invoiceWindow.document.write(`<p>Invoice Number: ${invoiceNumber}</p>`);
+            invoiceWindow.document.write(`<p>To complete your purchase, please click "Continue with Discord" and follow the instructions. Take a screenshot of this invoice.</p>`);
+            invoiceWindow.document.write('<button onclick="window.close()">Close</button>');
+            invoiceWindow.document.write('<button onclick="window.location.href=\'https://discord.com\';">Continue with Discord</button>');
+        }
+    </script>
+</body>
+</html>
