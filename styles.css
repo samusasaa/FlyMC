@@ -102,3 +102,8 @@ footer {
 .copyright {
     font-weight: bold;
 }
+
+.cart-items, .invoice {
+    margin: 20px 0;
+    text-align: left;
+}
