@@ -99,11 +99,67 @@ footer {
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.copyright {
-    font-weight: bold;
-}
-
 .cart-items, .invoice {
     margin: 20px 0;
     text-align: left;
+}
+
+.store-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.store-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: calc(33.333% - 40px);
+    text-align: center;
+}
+
+.store-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.store-item button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item button {
+    background: transparent;
+    border: none;
+    color: #f00;
+    cursor: pointer;
+}
+
+h2 {
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-top: 20px;
 }
