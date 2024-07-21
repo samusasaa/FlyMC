@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Store - FlyMC</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <div class="grid-background"></div>
@@ -21,23 +22,56 @@
     <main>
         <h1>Store</h1>
         <h2>Ranks</h2>
-        <ul>
-            <li>Iron - $0.99 <button onclick="addToCart('Iron', 0.99)">Add to Cart</button></li>
-            <li>Gold - $1.24 <button onclick="addToCart('Gold', 1.24)">Add to Cart</button></li>
-            <li>Diamond - $1.55 <button onclick="addToCart('Diamond', 1.55)">Add to Cart</button></li>
-            <li>Emerald - $1.94 <button onclick="addToCart('Emerald', 1.94)">Add to Cart</button></li>
-            <li>Netherite - $2.42 <button onclick="addToCart('Netherite', 2.42)">Add to Cart</button></li>
-        </ul>
+        <div class="store-items">
+            <div class="store-item">
+                <img src="path/to/iron-logo.png" alt="Iron Logo">
+                <p>Iron - $0.99</p>
+                <button onclick="addToCart('Iron', 0.99)">Add to Cart</button>
+            </div>
+            <div class="store-item">
+                <img src="path/to/gold-logo.png" alt="Gold Logo">
+                <p>Gold - $1.24</p>
+                <button onclick="addToCart('Gold', 1.24)">Add to Cart</button>
+            </div>
+            <div class="store-item">
+                <img src="path/to/diamond-logo.png" alt="Diamond Logo">
+                <p>Diamond - $1.55</p>
+                <button onclick="addToCart('Diamond', 1.55)">Add to Cart</button>
+            </div>
+            <div class="store-item">
+                <img src="path/to/emerald-logo.png" alt="Emerald Logo">
+                <p>Emerald - $1.94</p>
+                <button onclick="addToCart('Emerald', 1.94)">Add to Cart</button>
+            </div>
+            <div class="store-item">
+                <img src="path/to/netherite-logo.png" alt="Netherite Logo">
+                <p>Netherite - $2.42</p>
+                <button onclick="addToCart('Netherite', 2.42)">Add to Cart</button>
+            </div>
+        </div>
         <h2>Statuses</h2>
-        <ul>
-            <li>VIP - $1.99 <button onclick="addToCart('VIP', 1.99)">Add to Cart</button></li>
-            <li>VIP+ - $2.99 <button onclick="addToCart('VIP+', 2.99)">Add to Cart</button></li>
-            <li>VIP++ - $4.49 <button onclick="addToCart('VIP++', 4.49)">Add to Cart</button></li>
-        </ul>
+        <div class="store-items">
+            <div class="store-item">
+                <img src="path/to/vip-logo.png" alt="VIP Logo">
+                <p>VIP - $1.99</p>
+                <button onclick="addToCart('VIP', 1.99)">Add to Cart</button>
+            </div>
+            <div class="store-item">
+                <img src="path/to/vip+-logo.png" alt="VIP+ Logo">
+                <p>VIP+ - $2.99</p>
+                <button onclick="addToCart('VIP+', 2.99)">Add to Cart</button>
+            </div>
+            <div class="store-item">
+                <img src="path/to/vip++-logo.png" alt="VIP++ Logo">
+                <p>VIP++ - $4.49</p>
+                <button onclick="addToCart('VIP++', 4.49)">Add to Cart</button>
+            </div>
+        </div>
         <h2>Cart</h2>
         <div id="cart-items"></div>
         <div id="cart-total"></div>
         <button onclick="generateInvoice()">Generate Invoice</button>
+        <button onclick="continueWithDiscord()">Continue with Discord</button>
     </main>
     <footer>
         <div class="copyright">
