@@ -3,81 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store - FlyMC</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>FlyMC Store</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            height: 100%;
+        }
+
+        .grid-background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(90deg, rgba(200, 200, 200, 0.2) 1px, transparent 1px), 
+                              linear-gradient(rgba(200, 200, 200, 0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 80px);
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .copyright {
+            font-weight: bold;
+        }
+
+        .cart-items, .invoice {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .store-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .store-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: calc(33.333% - 40px);
+            text-align: center;
+        }
+
+        .store-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .store-item button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item button {
+            background: transparent;
+            border: none;
+            color: #f00;
+            cursor: pointer;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="grid-background"></div>
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="whats-new.html">What's new</a></li>
-                <li><a href="learn-more.html">Learn More</a></li>
-                <li><a href="store.html">Store</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/whats-new">What's new</a></li>
+                <li><a href="/learn-more">Learn More</a></li>
+                <li><a href="/store">Store</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h1>Store</h1>
-        <h2>Ranks</h2>
-        <div class="store-items">
-            <div class="store-item">
-                <img src="path/to/iron-logo.png" alt="Iron Logo">
-                <p>Iron - $0.99</p>
-                <button onclick="addToCart('Iron', 0.99)">Add to Cart</button>
-            </div>
-            <div class="store-item">
-                <img src="path/to/gold-logo.png" alt="Gold Logo">
-                <p>Gold - $1.24</p>
-                <button onclick="addToCart('Gold', 1.24)">Add to Cart</button>
-            </div>
-            <div class="store-item">
-                <img src="path/to/diamond-logo.png" alt="Diamond Logo">
-                <p>Diamond - $1.55</p>
-                <button onclick="addToCart('Diamond', 1.55)">Add to Cart</button>
-            </div>
-            <div class="store-item">
-                <img src="path/to/emerald-logo.png" alt="Emerald Logo">
-                <p>Emerald - $1.94</p>
-                <button onclick="addToCart('Emerald', 1.94)">Add to Cart</button>
-            </div>
-            <div class="store-item">
-                <img src="path/to/netherite-logo.png" alt="Netherite Logo">
-                <p>Netherite - $2.42</p>
-                <button onclick="addToCart('Netherite', 2.42)">Add to Cart</button>
-            </div>
+        <div class="logo-container">
+            <img src="path-to-your-logo.png" alt="FlyMC Logo" class="logo">
         </div>
-        <h2>Statuses</h2>
-        <div class="store-items">
-            <div class="store-item">
-                <img src="path/to/vip-logo.png" alt="VIP Logo">
-                <p>VIP - $1.99</p>
-                <button onclick="addToCart('VIP', 1.99)">Add to Cart</button>
-            </div>
-            <div class="store-item">
-                <img src="path/to/vip+-logo.png" alt="VIP+ Logo">
-                <p>VIP+ - $2.99</p>
-                <button onclick="addToCart('VIP+', 2.99)">Add to Cart</button>
-            </div>
-            <div class="store-item">
-                <img src="path/to/vip++-logo.png" alt="VIP++ Logo">
-                <p>VIP++ - $4.49</p>
-                <button onclick="addToCart('VIP++', 4.49)">Add to Cart</button>
-            </div>
+        <h1>Welcome to FlyMC</h1>
+        <p>A New Horizon for Minecraft Servers</p>
+        <div class="cta-buttons">
+            <a href="/join" class="btn">Join our Server</a>
+            <a href="/learn-more" class="btn btn-secondary">Learn More</a>
         </div>
-        <h2>Cart</h2>
-        <div id="cart-items"></div>
-        <div id="cart-total"></div>
-        <button onclick="generateInvoice()">Generate Invoice</button>
-        <button onclick="continueWithDiscord()">Continue with Discord</button>
     </main>
     <footer>
         <div class="copyright">
             &copy; 2024 FlyMC
         </div>
     </footer>
-    <script src="script.js"></script>
+
+    <div class="store-items">
+        <div class="store-item">
+            <img src="iron.png" alt="Iron Logo">
+            <h3>Iron - $0.99</h3>
+            <button onclick="addToCart('Iron', 0.99)">Add to Cart</button>
+        </div>
+        <div class="store-item">
+            <img src="gold.png" alt="Gold Logo">
+            <h3>Gold - $1.24</h3>
+            <button onclick="addToCart('Gold', 1.24)">Add to Cart</button>
+        </div>
+        <div class="store-item">
+            <img src="diamond.png" alt="Diamond Logo">
+            <h3>Diamond - $1.55</h3>
+            <button onclick="addToCart('Diamond', 1.55)">Add to Cart</button>
+        </div>
+        <div class="store-item">
+            <img src="emerald.png" alt="Emerald Logo">
+            <h3>Emerald - $1.94</h3>
+            <button onclick="addToCart('Emerald', 1.94)">Add to Cart</button>
+        </div>
+        <div class="store-item">
+            <img src="netherite.png" alt="Netherite Logo">
+            <h3>Netherite - $2.42</h3>
+            <button onclick="addToCart('Netherite', 2.42)">Add to Cart</button>
+        </div>
+    </div>
+
+    <h2>Statuses</h2>
+    <div class="store-items">
+        <div class="store-item">
+            <h3>VIP - $1.99</h3>
+            <button onclick="addToCart('VIP', 1.99)">Add to Cart</button>
+        </div>
+        <div class="store-item">
+            <h3>VIP+ - $2.99</h3>
+            <button onclick="addToCart('VIP+', 2.99)">Add to Cart</button>
+        </div>
+        <div class="store-item">
+            <h3>VIP++ - $4.49</h3>
+            <button onclick="addToCart('VIP++', 4.49)">Add to Cart</button>
+        </div>
+    </div>
+
+    <h2>Cart</h2>
+    <div id="cart-items" class="cart-items"></div>
+    <h3>Total: $<span id="total-price">0.00</span></h3>
+    <button onclick="generateInvoice()">Generate Invoice</button>
+
+    <script>
+        const cart = [];
+        let totalPrice = 0;
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            cartItemsDiv.innerHTML = '';
+            totalPrice = 0;
+
+            cart.forEach((cartItem, index) => {
+                totalPrice += cartItem.price;
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+                cartItemDiv.innerHTML = `
+                    ${cartItem.item} - $${cartItem.price.toFixed(2)}
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsDiv.appendChild(cartItemDiv);
+            });
+
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+
+        function generateInvoice() {
+            const invoiceNumber = 'INV' + Math.floor(Math.random() * 1000000);
+            const invoiceWindow = window.open('', 'Invoice', 'width=600,height=400');
+            invoiceWindow.document.write('<h1>Invoice</h1>');
+            cart.forEach(cartItem => {
+                invoiceWindow.document.write(`<p>${cartItem.item} - $${cartItem.price.toFixed(2)}</p>`);
+            });
+            invoiceWindow.document.write(`<h2>Total: $${totalPrice.toFixed(2)}</h2>`);
+            invoiceWindow.document.write(`<p>Invoice Number: ${invoiceNumber}</p>`);
+            invoiceWindow.document.write(`<p>To complete your purchase, please click "Continue with Discord" and follow the instructions. Take a screenshot of this invoice.</p>`);
+            invoiceWindow.document.write('<button onclick="window.close()">Close</button>');
+            invoiceWindow.document.write('<button onclick="window.location.href=\'https://discord.com\';">Continue with Discord</button>');
+        }
+    </script>
 </body>
 </html>
