@@ -117,7 +117,6 @@
             display: block;
             margin: 20px auto;
         }
-
     </style>
 </head>
 <body>
@@ -225,20 +224,117 @@
 
         function generateInvoice() {
             const invoiceNumber = 'INV' + Math.floor(Math.random() * 1000000);
-            const invoiceWindow = window.open('', 'Invoice', 'width=600,height=400');
-            invoiceWindow.document.write('<h1>Invoice</h1>');
-            cart.forEach(cartItem => {
-                invoiceWindow.document.write(`<p>${cartItem.item} - $${cartItem.price.toFixed(2)}</p>`);
-            });
-            const gstAmount = totalPrice * 0.18;
-            const grandTotal = totalPrice + gstAmount;
-            invoiceWindow.document.write(`<h2>Total: $${totalPrice.toFixed(2)}</h2>`);
-            invoiceWindow.document.write(`<h2>GST (18%): $${gstAmount.toFixed(2)}</h2>`);
-            invoiceWindow.document.write(`<h2>Grand Total: $${grandTotal.toFixed(2)}</h2>`);
-            invoiceWindow.document.write(`<p>Invoice Number: ${invoiceNumber}</p>`);
-            invoiceWindow.document.write(`<p>To complete your purchase, please click "Continue with Discord" and follow the instructions. Take a screenshot of this invoice.</p>`);
-            invoiceWindow.document.write('<button onclick="window.close()">Close</button>');
-            invoiceWindow.document.write('<button onclick="window.location.href=\'https://discord.com\';">Continue with Discord</button>');
+            const invoiceWindow = window.open('', 'Invoice', 'width=600,height=800');
+
+            invoiceWindow.document.write(`
+                <html>
+                <head>
+                    <title>Invoice</title>
+                    <style>
+                        body, html {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 20px;
+                            background: #f9f9f9;
+                            color: #333;
+                        }
+                        .invoice-container {
+                            background: #fff;
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                            max-width: 600px;
+                            margin: auto;
+                        }
+                        .invoice-header {
+                            text-align: center;
+                            margin-bottom: 20px;
+                        }
+                        .invoice-header h1 {
+                            margin: 0;
+                        }
+                        .invoice-details {
+                            margin-bottom: 20px;
+                        }
+                        .invoice-details h3 {
+                            margin: 0;
+                        }
+                        .invoice-items {
+                            margin-bottom: 20px;
+                        }
+                        .invoice-items table {
+                            width: 100%;
+                            border-collapse: collapse;
+                        }
+                        .invoice-items table, .invoice-items th, .invoice-items td {
+                            border: 1px solid #ddd;
+                        }
+                        .invoice-items th, .invoice-items td {
+                            padding: 8px;
+                            text-align: left;
+                        }
+                        .invoice-summary {
+                            text-align: right;
+                        }
+                        .invoice-summary h3 {
+                            margin: 0;
+                        }
+                        .invoice-footer {
+                            text-align: center;
+                            margin-top: 20px;
+                        }
+                        .invoice-footer button {
+                            background: #007bff;
+                            color: #fff;
+                            border: none;
+                            padding: 10px 20px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            margin: 10px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="invoice-container">
+                        <div class="invoice-header">
+                            <h1>Invoice</h1>
+                            <p>Invoice Number: ${invoiceNumber}</p>
+                        </div>
+                        <div class="invoice-details">
+                            <h3>Items:</h3>
+                            <div class="invoice-items">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${cart.map(item => `
+                                            <tr>
+                                                <td>${item.item}</td>
+                                                <td>$${item.price.toFixed(2)}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="invoice-summary">
+                            <h3>Total: $${totalPrice.toFixed(2)}</h3>
+                            <h3>GST (18%): $${(totalPrice * 0.18).toFixed(2)}</h3>
+                            <h3>Grand Total: $${(totalPrice * 1.18).toFixed(2)}</h3>
+                        </div>
+                        <div class="invoice-footer">
+                            <p>To complete your purchase, please click "Continue with Discord" and follow the instructions. Take a screenshot of this invoice.</p>
+                            <button onclick="window.close()">Close</button>
+                            <button onclick="window.location.href='https://discord.com';">Continue with Discord</button>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
         }
     </script>
 </body>
