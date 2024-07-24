@@ -45,80 +45,11 @@
             font-weight: bold;
         }
 
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .logo {
-            width: 100%;
-            max-width: 700px;
-            height: auto;
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: calc(100vh - 80px);
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            text-decoration: none;
-            color: white;
-            background-color: #007bff;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-        }
-
-        footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .copyright {
-            font-weight: bold;
-        }
-
-        .cart-items, .invoice {
-            margin: 20px 0;
-            text-align: left;
-        }
-
         .store-items {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            padding: 20px;
         }
 
         .store-item {
@@ -168,12 +99,25 @@
         h2 {
             font-size: 2em;
             margin-top: 20px;
+            text-align: center;
         }
 
         h3 {
             font-size: 1.5em;
             margin-top: 20px;
         }
+
+        #generate-invoice-button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+
     </style>
 </head>
 <body>
@@ -188,47 +132,32 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <div class="logo-container">
-            <img src="cover.png" alt="FlyMC Logo" class="logo">
-        </div>
-        <h1>Welcome to FlyMC - Store</h1>
-        <p>A Store for all your needs</p>
-        <div class="cta-buttons">
-            <a href="/join" class="btn">Join our Server</a>
-            <a href="/learn-more" class="btn btn-secondary">Learn More</a>
-        </div>
-    </main>
-    <footer>
-        <div class="Store">
-            STORE
-        </div>
-    </footer>
 
+    <h2>Ranks</h2>
     <div class="store-items">
         <div class="store-item">
             <img src="assets/iron.webp" alt="Iron Logo">
-            <h3>Iron - $0.99</h3>
+            <h3>Iron - $0.99 +Tax</h3>
             <button onclick="addToCart('Iron', 0.99)">Add to Cart</button>
         </div>
         <div class="store-item">
             <img src="assets/gold.webp" alt="Gold Logo">
-            <h3>Gold - $1.24</h3>
+            <h3>Gold - $1.24 +Tax</h3>
             <button onclick="addToCart('Gold', 1.24)">Add to Cart</button>
         </div>
         <div class="store-item">
             <img src="assets/diamond.webp" alt="Diamond Logo">
-            <h3>Diamond - $1.55</h3>
+            <h3>Diamond - $1.55 +Tax</h3>
             <button onclick="addToCart('Diamond', 1.55)">Add to Cart</button>
         </div>
         <div class="store-item">
             <img src="assets/emerald.webp" alt="Emerald Logo">
-            <h3>Emerald - $1.94</h3>
+            <h3>Emerald - $1.94 +Tax</h3>
             <button onclick="addToCart('Emerald', 1.94)">Add to Cart</button>
         </div>
         <div class="store-item">
             <img src="assets/netherite.webp" alt="Netherite Logo">
-            <h3>Netherite - $2.42</h3>
+            <h3>Netherite - $2.42 +Tax</h3>
             <button onclick="addToCart('Netherite', 2.42)">Add to Cart</button>
         </div>
     </div>
@@ -236,15 +165,15 @@
     <h2>Statuses</h2>
     <div class="store-items">
         <div class="store-item">
-            <h3>VIP - $1.99</h3>
+            <h3>VIP - $1.99 +Tax</h3>
             <button onclick="addToCart('VIP', 1.99)">Add to Cart</button>
         </div>
         <div class="store-item">
-            <h3>VIP+ - $2.99</h3>
+            <h3>VIP+ - $2.99 +Tax</h3>
             <button onclick="addToCart('VIP+', 2.99)">Add to Cart</button>
         </div>
         <div class="store-item">
-            <h3>VIP++ - $4.49</h3>
+            <h3>VIP++ - $4.49 +Tax</h3>
             <button onclick="addToCart('VIP++', 4.49)">Add to Cart</button>
         </div>
     </div>
@@ -252,7 +181,9 @@
     <h2>Cart</h2>
     <div id="cart-items" class="cart-items"></div>
     <h3>Total: $<span id="total-price">0.00</span></h3>
-    <button onclick="generateInvoice()">Generate Invoice</button>
+    <h3>GST (18%): $<span id="gst-amount">0.00</span></h3>
+    <h3>Grand Total: $<span id="grand-total">0.00</span></h3>
+    <button id="generate-invoice-button" onclick="generateInvoice()">Generate Invoice</button>
 
     <script>
         const cart = [];
@@ -284,7 +215,12 @@
                 cartItemsDiv.appendChild(cartItemDiv);
             });
 
+            const gstAmount = totalPrice * 0.18;
+            const grandTotal = totalPrice + gstAmount;
+
             document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+            document.getElementById('gst-amount').textContent = gstAmount.toFixed(2);
+            document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
         }
 
         function generateInvoice() {
@@ -294,7 +230,11 @@
             cart.forEach(cartItem => {
                 invoiceWindow.document.write(`<p>${cartItem.item} - $${cartItem.price.toFixed(2)}</p>`);
             });
+            const gstAmount = totalPrice * 0.18;
+            const grandTotal = totalPrice + gstAmount;
             invoiceWindow.document.write(`<h2>Total: $${totalPrice.toFixed(2)}</h2>`);
+            invoiceWindow.document.write(`<h2>GST (18%): $${gstAmount.toFixed(2)}</h2>`);
+            invoiceWindow.document.write(`<h2>Grand Total: $${grandTotal.toFixed(2)}</h2>`);
             invoiceWindow.document.write(`<p>Invoice Number: ${invoiceNumber}</p>`);
             invoiceWindow.document.write(`<p>To complete your purchase, please click "Continue with Discord" and follow the instructions. Take a screenshot of this invoice.</p>`);
             invoiceWindow.document.write('<button onclick="window.close()">Close</button>');
