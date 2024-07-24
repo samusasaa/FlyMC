@@ -4,120 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlyMC Store</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            color: #333;
-            height: 100%;
-        }
-
-        .grid-background {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(90deg, rgba(200, 200, 200, 0.2) 1px, transparent 1px), 
-                              linear-gradient(rgba(200, 200, 200, 0.2) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .store-items {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .store-item {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            padding: 20px;
-            width: calc(33.333% - 40px);
-            text-align: center;
-        }
-
-        .store-item img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .store-item button {
-            background: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #fff;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .cart-item button {
-            background: transparent;
-            border: none;
-            color: #f00;
-            cursor: pointer;
-        }
-
-        h2 {
-            font-size: 2em;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        h3 {
-            font-size: 1.5em;
-            margin-top: 20px;
-        }
-
-        #generate-invoice-button {
-            background: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: block;
-            margin: 20px auto;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="grid-background"></div>
@@ -177,72 +64,60 @@
         </div>
     </div>
 
-    <h2>Cart</h2>
-    <div id="cart-items" class="cart-items"></div>
-    <h3>Total: $<span id="total-price">0.00</span></h3>
-    <h3>GST (18%): $<span id="gst-amount">0.00</span></h3>
-    <h3>Grand Total: $<span id="grand-total">0.00</span></h3>
+    <div id="cart"></div>
     <button id="generate-invoice-button" onclick="generateInvoice()">Generate Invoice</button>
 
     <script>
         const cart = [];
-        let totalPrice = 0;
 
         function addToCart(item, price) {
             cart.push({ item, price });
-            updateCart();
+            displayCart();
+        }
+
+        function displayCart() {
+            const cartDiv = document.getElementById('cart');
+            cartDiv.innerHTML = '<h3>Cart</h3>' + cart.map((cartItem, index) => `
+                <div class="cart-item">
+                    <span>${cartItem.item} - $${cartItem.price.toFixed(2)}</span>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                </div>
+            `).join('') + '<h3>Total: $' + cart.reduce((total, item) => total + item.price, 0).toFixed(2) + '</h3>';
         }
 
         function removeFromCart(index) {
             cart.splice(index, 1);
-            updateCart();
-        }
-
-        function updateCart() {
-            const cartItemsDiv = document.getElementById('cart-items');
-            cartItemsDiv.innerHTML = '';
-            totalPrice = 0;
-
-            cart.forEach((cartItem, index) => {
-                totalPrice += cartItem.price;
-                const cartItemDiv = document.createElement('div');
-                cartItemDiv.className = 'cart-item';
-                cartItemDiv.innerHTML = `
-                    ${cartItem.item} - $${cartItem.price.toFixed(2)}
-                    <button onclick="removeFromCart(${index})">Remove</button>
-                `;
-                cartItemsDiv.appendChild(cartItemDiv);
-            });
-
-            const gstAmount = totalPrice * 0.18;
-            const grandTotal = totalPrice + gstAmount;
-
-            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
-            document.getElementById('gst-amount').textContent = gstAmount.toFixed(2);
-            document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+            displayCart();
         }
 
         function generateInvoice() {
-            const invoiceNumber = 'INV' + Math.floor(Math.random() * 1000000);
-            const invoiceWindow = window.open('', 'Invoice', 'width=600,height=800');
+            const invoiceNumber = Math.floor(Math.random() * 1000000);
+            const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+            const gst = totalPrice * 0.18;
+            const grandTotal = totalPrice * 1.18;
 
-            invoiceWindow.document.write(`
-                <html>
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
                 <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>Invoice</title>
                     <style>
                         body, html {
-                            font-family: Arial, sans-serif;
                             margin: 0;
-                            padding: 20px;
-                            background: #f9f9f9;
-                            color: #333;
+                            padding: 0;
+                            font-family: Arial, sans-serif;
+                            color: #f0f0f0;
+                            background-color: #121212;
+                            height: 100%;
                         }
                         .invoice-container {
-                            background: #fff;
+                            background: #1e1e1e;
                             padding: 20px;
                             border-radius: 10px;
-                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
                             max-width: 600px;
                             margin: auto;
                         }
@@ -252,12 +127,14 @@
                         }
                         .invoice-header h1 {
                             margin: 0;
+                            color: #f0f0f0;
                         }
                         .invoice-details {
                             margin-bottom: 20px;
                         }
                         .invoice-details h3 {
                             margin: 0;
+                            color: #f0f0f0;
                         }
                         .invoice-items {
                             margin-bottom: 20px;
@@ -267,17 +144,19 @@
                             border-collapse: collapse;
                         }
                         .invoice-items table, .invoice-items th, .invoice-items td {
-                            border: 1px solid #ddd;
+                            border: 1px solid #333;
                         }
                         .invoice-items th, .invoice-items td {
                             padding: 8px;
                             text-align: left;
+                            color: #f0f0f0;
                         }
                         .invoice-summary {
                             text-align: right;
                         }
                         .invoice-summary h3 {
                             margin: 0;
+                            color: #f0f0f0;
                         }
                         .invoice-footer {
                             text-align: center;
@@ -323,8 +202,8 @@
                         </div>
                         <div class="invoice-summary">
                             <h3>Total: $${totalPrice.toFixed(2)}</h3>
-                            <h3>GST (18%): $${(totalPrice * 0.18).toFixed(2)}</h3>
-                            <h3>Grand Total: $${(totalPrice * 1.18).toFixed(2)}</h3>
+                            <h3>GST (18%): $${gst.toFixed(2)}</h3>
+                            <h3>Grand Total: $${grandTotal.toFixed(2)}</h3>
                         </div>
                         <div class="invoice-footer">
                             <p>To complete your purchase, please click "Continue with Discord" and follow the instructions. Take a screenshot of this invoice.</p>
