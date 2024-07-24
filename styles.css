@@ -2,7 +2,8 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    color: #333;
+    color: #f0f0f0;
+    background-color: #121212;
     height: 100%;
 }
 
@@ -10,8 +11,8 @@ body, html {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(90deg, rgba(200, 200, 200, 0.2) 1px, transparent 1px), 
-                      linear-gradient(rgba(200, 200, 200, 0.2) 1px, transparent 1px);
+    background-image: linear-gradient(90deg, rgba(50, 50, 50, 0.2) 1px, transparent 1px), 
+                      linear-gradient(rgba(50, 50, 50, 0.2) 1px, transparent 1px);
     background-size: 40px 40px;
     z-index: -1;
 }
@@ -21,8 +22,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     position: relative;
 }
 
@@ -34,7 +35,7 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: #333;
+    color: #f0f0f0;
     font-weight: bold;
 }
 
@@ -64,11 +65,13 @@ main {
 h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
+    color: #f0f0f0;
 }
 
 p {
     font-size: 1.2em;
     margin-bottom: 20px;
+    color: #f0f0f0;
 }
 
 .cta-buttons {
@@ -95,26 +98,27 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background: white;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    background: #333;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.cart-items, .invoice {
-    margin: 20px 0;
-    text-align: left;
+footer .copyright {
+    font-weight: bold;
+    color: #f0f0f0;
 }
 
 .store-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 20px;
 }
 
 .store-item {
-    background: #fff;
-    border: 1px solid #ddd;
+    background: #1e1e1e;
+    border: 1px solid #333;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     margin: 10px;
     padding: 20px;
     width: calc(33.333% - 40px);
@@ -140,11 +144,11 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #fff;
+    background: #1e1e1e;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .cart-item button {
@@ -157,9 +161,110 @@ footer {
 h2 {
     font-size: 2em;
     margin-top: 20px;
+    text-align: center;
+    color: #f0f0f0;
 }
 
 h3 {
     font-size: 1.5em;
     margin-top: 20px;
+    color: #f0f0f0;
+}
+
+#generate-invoice-button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+.invoice-container {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    margin: auto;
+}
+
+.invoice-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.invoice-header h1 {
+    margin: 0;
+    color: #f0f0f0;
+}
+
+.invoice-details {
+    margin-bottom: 20px;
+}
+
+.invoice-details h3 {
+    margin: 0;
+    color: #f0f0f0;
+}
+
+.invoice-items {
+    margin-bottom: 20px;
+}
+
+.invoice-items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-items table, .invoice-items th, .invoice-items td {
+    border: 1px solid #333;
+}
+
+.invoice-items th, .invoice-items td {
+    padding: 8px;
+    text-align: left;
+    color: #f0f0f0;
+}
+
+.invoice-summary {
+    text-align: right;
+}
+
+.invoice-summary h3 {
+    margin: 0;
+    color: #f0f0f0;
+}
+
+.invoice-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.invoice-footer button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+@media (max-width: 768px) {
+    .store-item {
+        width: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 576px) {
+    .store-item {
+        width: calc(100% - 40px);
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
 }
